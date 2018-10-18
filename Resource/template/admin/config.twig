@@ -1,0 +1,62 @@
+{#
+#}
+{% extends 'default_frame.twig' %}
+
+{% set menus = ['store', 'plugin', 'plugin_list'] %}
+
+{% block title %}データバックアッププラグイン{% endblock %}
+{% block sub_title %}{% endblock %}
+
+{% form_theme form 'Form/bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block javascript %}
+<script src="{{ app.config.admin_urlpath }}/assets/js/vendor/spin.min.js"></script>
+<script>
+$(function() {
+
+    var opts = {
+        lines: 13,
+        length: 30,
+        width: 2,
+        radius: 12,
+        corners: 1,
+        rotate: 0,
+        direction: 1,
+        color: '#BBB',
+        speed: 1,
+        trail: 67,
+        shadow: true,
+        hwaccel: false,
+        className: 'spinner',
+        zIndex: 2e9,
+        top: top
+    };
+
+    ImageSpinner = new Spinner(opts).spin(document.getElementById('spinner'));
+    ImageSpinner.stop();
+
+    $('#upload-form').submit(function() {
+        $('#upload-button').attr('disabled', 'disabled');
+        $('#download-button').attr('disabled', 'disabled');
+        ImageSpinner.spin(document.getElementById('spinner'));
+    });
+});
+</script>
+{% endblock javascript %}
+
+{% block main %}
+<div class="row">
+    <div class="col-md-12">
+        <form id="upload-form" class="form-inline" method="post" action="{{ url('plugin_DatabackupPlugin_config') }}" {{ form_enctype(form) }}>
+            {{ form_widget(form._token) }}
+            <div id="upload_wrap" class="box">
+                <div class="box-footer text-center">
+                    <button id="upload-button" type="submit" class="btn btn-primary btn-sm">バックアップファイルの作成</button>
+                </div><!-- /.box-footer -->
+            </div><!-- /.box -->
+        </form>
+    </div><!-- /.col -->
+</div>
+
+
+{% endblock %}
