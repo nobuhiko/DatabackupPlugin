@@ -66,7 +66,7 @@ class ConfigController
                 $filename = $this->bkup_dir.$table->getName().'.csv';
                 $exporter->export($filename, array(array_keys($table->getColumns())));
 
-                $stmt = $em->prepare('SELECT * FROM '. $table->getName());
+                $stmt = $em->prepare('SELECT '.implode(',', array_keys($table->getColumns())).' FROM '. $table->getName());
                 $stmt->execute();
                 $exporter->export($filename, new PdoCollection($stmt->getIterator()));
             }

@@ -1,5 +1,5 @@
 name: 'データバックアッププラグイン for EC-CUBE3'
 code: DatabackupPlugin
-version: 1.0.0
+version: 1.0.1
 service:
     - DatabackupPluginServiceProvider
