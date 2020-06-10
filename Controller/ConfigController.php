@@ -70,10 +70,10 @@ class ConfigController
                 $stmt->execute();
                 $exporter->export($filename, new PdoCollection($stmt->getIterator()));
             }
-
-            $filename = __DIR__ . '/../Resource/backup/backup' . '.tar.gz';
+            $output = __DIR__ . '/../Resource/backup/backup' . '.tar.gz';
             //圧縮フラグTRUEはgzip圧縮をおこなう
-            $tar = new \Archive_Tar($filename, TRUE);
+            $tar = new \Archive_Tar($output, TRUE);
+            $tar->setErrorHandling(PEAR_ERROR_PRINT);
 
             //bkupフォルダに移動する
             chdir($this->bkup_dir);
@@ -86,9 +86,9 @@ class ConfigController
 
             $response = new Response();
             $response->headers->set('Content-type', 'application/octect-stream');
-            $response->headers->set('Content-Disposition', sprintf('attachment; filename="%s";', basename($filename)));
+            $response->headers->set('Content-Disposition', sprintf('attachment; filename="%s";', basename($output)));
             $response->sendHeaders();
-            $response->setContent(readfile($filename));
+            $response->setContent(readfile($output));
 
             return $response;
         }

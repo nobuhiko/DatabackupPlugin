@@ -1,6 +1,54 @@
 # Change Log
 
-### 0.1.1 - ***
+### 0.1.3 - Jan 13, 2020
+
+**BC-breaking changes**:
+- **Minimal version is 5.5.0**.
+
+Format specific:
+- **zip**: Fixed PclZip-interface
+- **7zip**: Fixed 7z-archiving, when archiving files should be renamed in archive
+- **lzw**: Fixed check for availability (#15)
+
+New features:
+- Added `canCreateType(): bool`
+- Added `canAddFiles(): bool`
+- Added `canDeleteFiles(): bool`
+
+### 0.1.2 - Jan 03, 2019
+
+**BC-breaking changes**:
+- PclZip-interface getter renamed to `getPclZipInterface()`.
+- Make `addFiles()` return number of **added files** instead of total files number.
+
+Other changes:
+- Make `addFiles()` / `deleteFiles()` / `archiveFiles()` throw `\Exception`s when any error occurred (and even when
+files list is empty).
+- Fixed usage of `/` always as directory separator in `addFiles()` and `archiveFiles()`.
+
+Format-specific changes:
+- Divided format-specific code into separate components.
+- **zip**: 
+    - Excluded directories from files list (`getFileNames()`).
+    - Fixed retrieving new list of files after `addFiles()` usage.
+    - (#11) Fixed invalid "/" archive entry after `archiveFiles()` usage.
+- **tar** (`TarArchive` adapter):
+    - Fixed number of added files of `addFiles()`.
+    - Fixed list of files after `deleteFiles()` usage.
+    - Added checks for compressed tar's support in `canOpenArchive()` and `canOpenType()`.
+- **tar** (`PharData` adapter):
+    - Fixed list of files after `addFiles()`/`deleteFiles()` usage and path generation of archive in `archiveFiles()`.
+    - Fixed path of files in `getFileNames()` to use UNIX path separator ("/").
+- **iso**:
+    - Excluded directories from files list (`getFileNames()`).
+- **7zip**:
+    - Fixed result of `deleteFiles()` and `archiveFiles()` in-archive paths.
+    - Fixed calculation of compressed file size in `getFileData()`.
+    - (#10) Set infinite timeout of `7z` system call (useful for big archives).
+- **cab**:
+    - Fixed `extractFiles()` functionality.
+
+### 0.1.1 - Sep 21, 2018
 API changes:
 * **Changed algorithm of files list generation in `archiveFiles()` and `addFiles()`**:
     ```php

@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'PEAR' => array($vendorDir . '/pear/pear_exception'),
     'Goodby\\CSV' => array($vendorDir . '/goodby/csv/src'),
     'Console' => array($vendorDir . '/pear/console_getopt'),
     'Archive_Tar' => array($vendorDir . '/pear/archive_tar'),

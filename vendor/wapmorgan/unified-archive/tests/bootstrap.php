@@ -1,15 +1,17 @@
 <?php
-
 use PHPUnit\Framework\TestCase;
+use wapmorgan\UnifiedArchive\UnifiedArchive;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 define('ARCHIVES_DIR', __DIR__ . '/archives');
+define('FIXTURES_DIR', __DIR__ . '/fixtures');
+define('WORK_DIR', __DIR__ . '/workdir');
 
 class PhpUnitTestCase extends TestCase
 {
     /**
-     * @var array Array of arrays[md5_hash, filename, remote file]
+     * @var array<string format, array<string md5_hash, string filename, string remote_file>>
      */
     static public $archives;
 
@@ -17,6 +19,14 @@ class PhpUnitTestCase extends TestCase
      * @var array List of directories/files and content stored in archive
      */
     static public $fixtureContents;
+
+    /**
+     * @return array
+     */
+    public function getFixtures()
+    {
+        return self::$archives;
+    }
 
     /**
      * @param $fixture
@@ -27,16 +37,42 @@ class PhpUnitTestCase extends TestCase
     {
         return ARCHIVES_DIR.'/'.$fixture;
     }
+
+    /**
+     *
+     */
+    public function cleanWorkDir()
+    {
+        foreach (glob(WORK_DIR.'/*') as $file) {
+            if (basename($file) !== '.gitignore')
+                unlink($file);
+        }
+    }
+
+    /**
+     * @param       $prefix
+     * @param array $list
+     * @param array $output
+     */
+    protected function flattenFilesList($prefix, array $list, array &$output)
+    {
+        foreach ($list as $name => $value) {
+            if (is_array($value))
+                $this->flattenFilesList($prefix.$name.'/', $value, $output);
+            else
+                $output[$prefix.$name] = $value;
+        }
+    }
 }
 
 PhpUnitTestCase::$archives = [
-    ['c2bdd9989281738a637b3331dd415b8b', 'fixtures.7z', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.7z'],
-    ['c6918bb89b32d5a71ec1f7836269056e', 'fixtures.iso', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.iso'],
-    ['4df15469482f218110ab275eb17eef44', 'fixtures.tar', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.tar'],
-    ['4adbd6405cb13c4c6a942ae90922f1ff', 'fixtures.tar.bz2', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.tar.bz2'],
-    ['644800e1eb17c9f296dca61336525bd9', 'fixtures.tar.gz', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.tar.gz'],
-    ['ef64468ec5a1a582db6d3f77fbd5d2b5', 'fixtures.tar.xz', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.tar.xz'],
-    ['36140341386a8a46fc345d2068f1969f', 'fixtures.zip', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.zip'],
+    UnifiedArchive::SEVEN_ZIP => ['a91fb294d6eb88df24ab26ae5f713775', 'fixtures.7z', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.7z'],
+    UnifiedArchive::ISO => ['f3bb89062d2c62fb2339c913933db112', 'fixtures.iso', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.iso'],
+    UnifiedArchive::TAR => ['d64474b28bfd036abb885b4e80c847b3', 'fixtures.tar', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.tar'],
+    UnifiedArchive::TAR_BZIP => ['e2ca07d2f1007f312493a12b239544df', 'fixtures.tar.bz2', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.tar.bz2'],
+    UnifiedArchive::TAR_GZIP => ['fdc239490189e7bf6239a26067424d42', 'fixtures.tar.gz', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.tar.gz'],
+    UnifiedArchive::TAR_LZMA => ['ef64468ec5a1a582db6d3f77fbd5d2b5', 'fixtures.tar.xz', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.tar.xz'],
+    UnifiedArchive::ZIP => ['69dcdf13d2a8b7630e2f54fa5ab97d5a', 'fixtures.zip', 'https://github.com/wapmorgan/UnifiedArchive/releases/download/0.0.1/fixtures.zip'],
 ];
 
 PhpUnitTestCase::$fixtureContents = [
@@ -51,6 +87,12 @@ PhpUnitTestCase::$fixtureContents = [
 
 /**
  * Downloading function with retrying
+ * @param $url
+ * @param $target
+ * @param $md5
+ * @param int $retry
+ * @return bool
+ * @throws Exception
  */
 function downloadFixture($url, $target, $md5, $retry = 3)
 {
@@ -71,6 +113,13 @@ function downloadFixture($url, $target, $md5, $retry = 3)
 /**
  * Checking fixtures
  */
+foreach ([ARCHIVES_DIR, WORK_DIR] as $dir) {
+    if (!is_dir($dir)) {
+        if (!mkdir($dir, 0777))
+            throw new Exception('Could not create '.$dir.' directory');
+    }
+}
+
 foreach (PhpUnitTestCase::$archives as $fixture) {
     $fixture_file = PhpUnitTestCase::getArchivePath($fixture[1]);
     if (!file_exists($fixture_file)) {

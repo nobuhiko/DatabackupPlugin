@@ -60,17 +60,17 @@
     },
     {
         "name": "pear/archive_tar",
-        "version": "1.4.3",
-        "version_normalized": "1.4.3.0",
+        "version": "1.4.9",
+        "version_normalized": "1.4.9.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pear/Archive_Tar.git",
-            "reference": "43455c960da70e655c6bdf8ea2bc8cc1a6034afb"
+            "reference": "c5b00053770e1d72128252c62c2c1a12c26639f0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/43455c960da70e655c6bdf8ea2bc8cc1a6034afb",
-            "reference": "43455c960da70e655c6bdf8ea2bc8cc1a6034afb",
+            "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/c5b00053770e1d72128252c62c2c1a12c26639f0",
+            "reference": "c5b00053770e1d72128252c62c2c1a12c26639f0",
             "shasum": ""
         },
         "require": {
@@ -81,11 +81,11 @@
             "phpunit/phpunit": "*"
         },
         "suggest": {
-            "ext-bz2": "bz2 compression support.",
-            "ext-xz": "lzma2 compression support.",
+            "ext-bz2": "Bz2 compression support.",
+            "ext-xz": "Lzma2 compression support.",
             "ext-zlib": "Gzip compression support."
         },
-        "time": "2017-06-11T17:28:11+00:00",
+        "time": "2019-12-04T10:17:28+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -119,7 +119,7 @@
                 "email": "mrook@php.net"
             }
         ],
-        "description": "Tar file management class",
+        "description": "Tar file management class with compression support (gzip, bzip2, lzma2)",
         "homepage": "https://github.com/pear/Archive_Tar",
         "keywords": [
             "archive",
@@ -128,20 +128,20 @@
     },
     {
         "name": "pear/console_getopt",
-        "version": "v1.4.1",
-        "version_normalized": "1.4.1.0",
+        "version": "v1.4.3",
+        "version_normalized": "1.4.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pear/Console_Getopt.git",
-            "reference": "82f05cd1aa3edf34e19aa7c8ca312ce13a6a577f"
+            "reference": "a41f8d3e668987609178c7c4a9fe48fecac53fa0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pear/Console_Getopt/zipball/82f05cd1aa3edf34e19aa7c8ca312ce13a6a577f",
-            "reference": "82f05cd1aa3edf34e19aa7c8ca312ce13a6a577f",
+            "url": "https://api.github.com/repos/pear/Console_Getopt/zipball/a41f8d3e668987609178c7c4a9fe48fecac53fa0",
+            "reference": "a41f8d3e668987609178c7c4a9fe48fecac53fa0",
             "shasum": ""
         },
-        "time": "2015-07-20T20:28:12+00:00",
+        "time": "2019-11-20T18:27:48+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -158,11 +158,6 @@
         ],
         "authors": [
             {
-                "name": "Greg Beaver",
-                "email": "cellog@php.net",
-                "role": "Helper"
-            },
-            {
                 "name": "Andrei Zmievski",
                 "email": "andrei@php.net",
                 "role": "Lead"
@@ -171,33 +166,38 @@
                 "name": "Stig Bakken",
                 "email": "stig@php.net",
                 "role": "Developer"
+            },
+            {
+                "name": "Greg Beaver",
+                "email": "cellog@php.net",
+                "role": "Helper"
             }
         ],
         "description": "More info available on: http://pear.php.net/package/Console_Getopt"
     },
     {
         "name": "pear/pear-core-minimal",
-        "version": "v1.10.6",
-        "version_normalized": "1.10.6.0",
+        "version": "v1.10.10",
+        "version_normalized": "1.10.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pear/pear-core-minimal.git",
-            "reference": "052868b244d31f822796e7e9981f62557eb256d4"
+            "reference": "625a3c429d9b2c1546438679074cac1b089116a7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pear/pear-core-minimal/zipball/052868b244d31f822796e7e9981f62557eb256d4",
-            "reference": "052868b244d31f822796e7e9981f62557eb256d4",
+            "url": "https://api.github.com/repos/pear/pear-core-minimal/zipball/625a3c429d9b2c1546438679074cac1b089116a7",
+            "reference": "625a3c429d9b2c1546438679074cac1b089116a7",
             "shasum": ""
         },
         "require": {
-            "pear/console_getopt": "~1.3",
+            "pear/console_getopt": "~1.4",
             "pear/pear_exception": "~1.0"
         },
         "replace": {
             "rsky/pear-core-min": "self.version"
         },
-        "time": "2018-08-22T19:28:09+00:00",
+        "time": "2019-11-19T19:00:24+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -223,17 +223,17 @@
     },
     {
         "name": "pear/pear_exception",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pear/PEAR_Exception.git",
-            "reference": "8c18719fdae000b690e3912be401c76e406dd13b"
+            "reference": "dbb42a5a0e45f3adcf99babfb2a1ba77b8ac36a7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pear/PEAR_Exception/zipball/8c18719fdae000b690e3912be401c76e406dd13b",
-            "reference": "8c18719fdae000b690e3912be401c76e406dd13b",
+            "url": "https://api.github.com/repos/pear/PEAR_Exception/zipball/dbb42a5a0e45f3adcf99babfb2a1ba77b8ac36a7",
+            "reference": "dbb42a5a0e45f3adcf99babfb2a1ba77b8ac36a7",
             "shasum": ""
         },
         "require": {
@@ -242,7 +242,7 @@
         "require-dev": {
             "phpunit/phpunit": "*"
         },
-        "time": "2015-02-10T20:07:52+00:00",
+        "time": "2019-12-10T10:24:42+00:00",
         "type": "class",
         "extra": {
             "branch-alias": {
@@ -251,9 +251,9 @@
         },
         "installation-source": "dist",
         "autoload": {
-            "psr-0": {
-                "PEAR": ""
-            }
+            "classmap": [
+                "PEAR/"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "include-path": [
@@ -280,22 +280,22 @@
     },
     {
         "name": "wapmorgan/unified-archive",
-        "version": "0.1.1",
-        "version_normalized": "0.1.1.0",
+        "version": "0.1.3",
+        "version_normalized": "0.1.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/wapmorgan/UnifiedArchive.git",
-            "reference": "71dad760ae46d9a9f94e52af755918dd37e9b6d6"
+            "reference": "748303c5387c3fe211112ccc61ae79109e8ccc0b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wapmorgan/UnifiedArchive/zipball/71dad760ae46d9a9f94e52af755918dd37e9b6d6",
-            "reference": "71dad760ae46d9a9f94e52af755918dd37e9b6d6",
+            "url": "https://api.github.com/repos/wapmorgan/UnifiedArchive/zipball/748303c5387c3fe211112ccc61ae79109e8ccc0b",
+            "reference": "748303c5387c3fe211112ccc61ae79109e8ccc0b",
             "shasum": ""
         },
         "require": {
             "ext-fileinfo": "*",
-            "php": ">=5.4.0"
+            "php": ">=5.5.0"
         },
         "replace": {
             "wapmorgan/cam": "1.0.2"
@@ -318,7 +318,7 @@
             "phpclasses/php-iso-file": "ISO support",
             "wapmorgan/cab-archive": "CAB support"
         },
-        "time": "2018-09-18T19:26:18+00:00",
+        "time": "2020-01-13T00:24:26+00:00",
         "bin": [
             "bin/cam"
         ],
@@ -331,7 +331,8 @@
                 "entry-point": "bin/cam",
                 "include": [
                     "bin",
-                    "data"
+                    "src",
+                    "vendor"
                 ],
                 "events": {
                     "command.package.start": "git describe --tags > bin/version.txt",
@@ -343,11 +344,7 @@
         "autoload": {
             "psr-4": {
                 "wapmorgan\\UnifiedArchive\\": "src/"
-            },
-            "files": [
-                "src/function.gzip_stat.php",
-                "src/stream.compress.lzw.php"
-            ]
+            }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [

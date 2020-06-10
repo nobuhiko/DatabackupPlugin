@@ -11,7 +11,7 @@
 		}
 	],
 	"require": {
-		"php": ">=5.4.0",
+		"php": ">=5.5.0",
 		"ext-fileinfo": "*"
 	},
 	"require-dev": {
@@ -38,11 +38,7 @@
 	"autoload": {
 		"psr-4": {
 			"wapmorgan\\UnifiedArchive\\": "src/"
-		},
-		"files": [
-			"src/function.gzip_stat.php",
-			"src/stream.compress.lzw.php"
-		]
+		}
 	},
 	"bin": ["bin/cam"],
 	"minimum-stability": "dev",
@@ -52,7 +48,7 @@
             "name": "cam.phar",
             "output-dir": "./",
             "entry-point": "bin/cam",
-            "include": ["bin", "data"],
+            "include": ["bin", "src", "vendor"],
             "events": {
                 "command.package.start" : "git describe --tags > bin/version.txt",
                 "command.package.end": "chmod +x cam.phar && rm bin/version.txt"

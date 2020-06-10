@@ -6,11 +6,6 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit04b9de214ecf78437e83e44872135821
 {
-    public static $files = array (
-        'fd419dbaef6da3b0a9513930c6ff3624' => __DIR__ . '/..' . '/wapmorgan/unified-archive/src/function.gzip_stat.php',
-        '4c3913fa60911ad870b62c4baa0b9e9d' => __DIR__ . '/..' . '/wapmorgan/unified-archive/src/stream.compress.lzw.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
         'w' => 
         array (
@@ -26,13 +21,6 @@ class ComposerStaticInit04b9de214ecf78437e83e44872135821
     );
 
     public static $prefixesPsr0 = array (
-        'P' => 
-        array (
-            'PEAR' => 
-            array (
-                0 => __DIR__ . '/..' . '/pear/pear_exception',
-            ),
-        ),
         'G' => 
         array (
             'Goodby\\CSV' => 
@@ -60,6 +48,10 @@ class ComposerStaticInit04b9de214ecf78437e83e44872135821
         0 => __DIR__ . '/..' . '/pear/pear-core-minimal/src',
     );
 
+    public static $classMap = array (
+        'PEAR_Exception' => __DIR__ . '/..' . '/pear/pear_exception/PEAR/Exception.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
@@ -67,6 +59,7 @@ class ComposerStaticInit04b9de214ecf78437e83e44872135821
             $loader->prefixDirsPsr4 = ComposerStaticInit04b9de214ecf78437e83e44872135821::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit04b9de214ecf78437e83e44872135821::$prefixesPsr0;
             $loader->fallbackDirsPsr0 = ComposerStaticInit04b9de214ecf78437e83e44872135821::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInit04b9de214ecf78437e83e44872135821::$classMap;
 
         }, null, ClassLoader::class);
     }
