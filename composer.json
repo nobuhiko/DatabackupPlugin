@@ -2,7 +2,7 @@
     "require": {
         "php" : "^5.6",
         "pear/pear-core-minimal" : "^1.10.0alpha2",
-        "pear/archive_tar" : "*",
+        "pear/archive_tar" : "1.4.14",
         "goodby/csv": "*",
         "wapmorgan/unified-archive": "~0.1.1"
     }
